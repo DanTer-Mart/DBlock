@@ -88,90 +88,92 @@ check:insert(donet)
 
 local function deactiveDone()
     g1.isVisible = true
-check.isVisible = false
-data.isVisible = false
-start.isVisible = true
-start1.isVisible = true
+   check.isVisible = false
+   data.isVisible = false
+   start.isVisible = true
+   start1.isVisible = true
 end
 local function activeDone()
     g1.isVisible = false
-data.text = ""
-check.isVisible = true
-data.isVisible = true
-start.isVisible = false
-start1.isVisible = false
+   data.text = ""
+   check.isVisible = true
+   data.isVisible = true
+   start.isVisible = false
+   start1.isVisible = false
 end
 local function n1()
-value = "n1"
-plus.text = "Введи имя фигуры"
-activeDone()
-    end
-    local function h1()
-        value = "h1"
-       plus.text = "Введи высоту"
-       activeDone()
-       end
-       local function w1()
+   value = "n1"
+   plus.text = "Введи имя фигуры"
+   activeDone()
+end
+local function h1()
+   value = "h1"
+   plus.text = "Введи высоту"
+   activeDone()
+end
+local function w1()
            value = "w1"
           plus.text = "Введи ширину"
           activeDone()
           end
-    local function x1()
-     value = "x1"
-    plus.text = "Введи позицию Х"
-    activeDone()
-    end
-    local function y1()
-        value = "y1"
-       plus.text = "Введи позицию Y"
-       activeDone()
-       end
-         local function doneText()
-            if(value == "n1") then
-                blockt1n.text = dataD
-                logic["n1"] = tostring(dataD)
-               end
-               if(value == "y1") then
-                blockt1y.text = dataD
-                logic["y1"] = tonumber(dataD)
-               end
-               if(value == "x1") then
-                blockt1x.text = dataD
-                logic["x1"] = tonumber(dataD)
-               end
-               if(value == "h1") then
-                blockt1h.text = dataD
-                logic["h1"] = tonumber(dataD)
-               end
-               if(value == "w1") then
-                blockt1w.text = dataD
-                logic["w1"] = tonumber(dataD)
-               end
-               value = "yes"
+local function x1()
+   value = "x1"
+   plus.text = "Введи позицию Х"
+   activeDone()
+end
+local function y1()
+   value = "y1"
+   plus.text = "Введи позицию Y"
+   activeDone()
+end
+local function doneText()
+   if(value == "n1") then
+      blockt1n.text = dataD
+      logic["n1"] = tostring(dataD)
+   end
+   if(value == "y1") then
+      blockt1y.text = dataD
+      logic["y1"] = tonumber(dataD)
+   end
+   if(value == "x1") then
+      blockt1x.text = dataD
+      logic["x1"] = tonumber(dataD)
+   end
+   if(value == "h1") then
+      blockt1h.text = dataD
+      logic["h1"] = tonumber(dataD)
+   end
+   if(value == "w1") then
+      blockt1w.text = dataD
+      logic["w1"] = tonumber(dataD)
+   end
+value = "yes"
 deactiveDone()
-                end
-                local function value( event ) 
-                    if( event.phase == "editing") then
-                        dataD = event.text
-                end
-            end
-            local function run()
-                if sim == 0 then
-g1.isVisible = false
-g2.isVisible = true
-start1.text = "Выйти"
-name = logic["n1"]
-local name = display.newRect( logic["x1"], logic["y1"], logic["w1"], logic["h1"] )
-g2:insert( name )
-sim = 1
-                elseif sim == 1 then
-                    g1.isVisible = true
-g2.isVisible = false
-start1.text = "Запустить"
-sim = 0
-                end
-            end
-            block1w:addEventListener( "tap", w1)
+end
+local function value( event ) 
+   if( event.phase == "editing") then
+      dataD = event.text
+   end
+end
+local function run()
+   if sim == 0 then
+      g1.isVisible = false
+      g2.isVisible = true
+      start1.text = "Выйти"
+      name = logic["n1"]
+      if logic["x1"] ~= nil or logic["y1"] ~= nil or logic["w1"] ~= nil or logic["h1"] ~= nil then
+         local name = display.newRect( logic["x1"], logic["y1"], logic["w1"], logic["h1"] )
+         g2:insert( name )
+      end
+      sim = 1
+   elseif sim == 1 then
+      g1.isVisible = true
+      g2.isVisible = false
+      start1.text = "Запустить"
+      sim = 0
+   end
+end
+block1w:addEventListener( "tap", w1)
     block1h:addEventListener( "tap", h1 )
     block1n:addEventListener( "tap", n1)
     block1x:addEventListener( "tap", x1 )
@@ -179,4 +181,4 @@ sim = 0
     done:addEventListener( "tap", doneText)
     start:addEventListener( "tap", run )
     data:addEventListener( "userInput", value )
-    deactiveDone()
+deactiveDone()
